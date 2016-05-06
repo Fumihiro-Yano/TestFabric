@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationController: UINavigationController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Fabric.with([Twitter()])
         navigationController = UINavigationController()
         let viewController: ViewController = ViewController()
         
