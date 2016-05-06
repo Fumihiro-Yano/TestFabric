@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import TwitterKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = UIColor.redColor()
+        let loginButton = TWTRLogInButton(logInCompletion: {
+            session, error in
+            if session != nil {
+                let timelineVC = TimelineViewController()
+                timelineVC.userId = session?.userID
+                print(session!.userName)
+                print(session?.userID)
+                UIApplication.sharedApplication().keyWindow?.rootViewController = timelineVC
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+        loginButton.center = self.view.center
+        self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
